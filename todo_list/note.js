@@ -25,44 +25,44 @@ const routeModules = [
 //     res.send(r)
 // }
 
-// app.get('/', (request, response) => {
-//     let path = 'index.html'
-//     sendHtml(path, response)
-// })
+app.get('/', (request, response) => {
+    let path = 'index.html'
+    sendHtml(path, response)
+})
 
-// app.get('/api/todo/all', (request, response) => {
-//     // 从文件中 读取所有的 todos 再返回给浏览器
-//     let todos = todo.all()
-//     sendResponse(response, todos)
-// })
-//
-// app.post('/api/todo/add', (request, response) => {
-//     let form = request.body
-//     // log("form", form, typeof  form)  // form type is obj
-//     let t = todo.add(form)
-//     sendResponse(response, t)
-// })
-//
-// app.post('/api/todo/delete', (request, response) => {
-//     let form = request.body // form is todo_id
-//     log("form", form, typeof form)  // form type is obj
-//     let t = todo.delete(form.id)
-//     sendResponse(response, t)
-// })
-//
-// app.post('/api/todo/finished', (request, response) => {
-//     let form = request.body // form is todo_id
-//     log("form", form, typeof form)  // form type is obj
-//     let t = todo.finished(form.id)
-//     sendResponse(response, t)
-// })
-//
-// app.post('/api/todo/update', (request, response) => {
-//     let form = request.body // form is todo_id
-//     log("form", form, typeof form)  // form type is obj
-//     let t = todo.update(form)
-//     sendResponse(response, t)
-// })
+app.get('/api/todo/all', (request, response) => {
+    // 从文件中 读取所有的 todos 再返回给浏览器
+    let todos = todo.all()
+    sendResponse(response, todos)
+})
+
+app.post('/api/todo/add', (request, response) => {
+    let form = request.body
+    // log("form", form, typeof  form)  // form type is obj
+    let t = todo.add(form)
+    sendResponse(response, t)
+})
+
+app.post('/api/todo/delete', (request, response) => {
+    let form = request.body // form is todo_id
+    log("form", form, typeof form)  // form type is obj
+    let t = todo.delete(form.id)
+    sendResponse(response, t)
+})
+
+app.post('/api/todo/finished', (request, response) => {
+    let form = request.body // form is todo_id
+    log("form", form, typeof form)  // form type is obj
+    let t = todo.finished(form.id)
+    sendResponse(response, t)
+})
+
+app.post('/api/todo/update', (request, response) => {
+    let form = request.body // form is todo_id
+    log("form", form, typeof form)  // form type is obj
+    let t = todo.update(form)
+    sendResponse(response, t)
+})
 
 class Todo {
     constructor() {
@@ -131,105 +131,105 @@ class Todo {
         this.post('/add', form, callback)
     }
     all(callback) {
-        this.get('/add', callback)  // get 请求
+        this.get('/all', callback)  // get 请求
     }
 }
 
 let todoApi =  Todo.new()
 
-// const todoAll = () => {
-//     let request = {
-//         method: 'GET',
-//         url: '/api/todo/all',
-//         contentType: 'application/json',
-//         callback: function (response) {
-//             // 不考虑错误情况(断网/服务器返回错误等等)
-//             // log('响应', response)
-//             let todos = JSON.parse(response)
-//             window.todos = todos
-//             log("todos", todos)
-//             // insertTodoAll(todos)
-//         }
-//     }
-//     ajax(request)
-// }
+const todoAll = () => {
+    let request = {
+        method: 'GET',
+        url: '/api/todo/all',
+        contentType: 'application/json',
+        callback: function (response) {
+            // 不考虑错误情况(断网/服务器返回错误等等)
+            // log('响应', response)
+            let todos = JSON.parse(response)
+            window.todos = todos
+            log("todos", todos)
+            // insertTodoAll(todos)
+        }
+    }
+    ajax(request)
+}
 
-// const todoNew = (form) => {
-//     // let form = {
-//     //     content: "测试内容",
-//     // }
-//     let data = JSON.stringify(form)
-//     let request = {
-//         method: 'POST',
-//         url: '/api/todo/add',
-//         data: data,
-//         contentType: 'application/json',
-//         callback: function (response) {
-//             // 不考虑错误情况(断网/服务器返回错误等等)
-//             // log('响应', response)
-//             let res = JSON.parse(response)
-//         }
-//     }
-//     ajax(request)
-// }
+const todoNew = (form) => {
+    // let form = {
+    //     content: "测试内容",
+    // }
+    let data = JSON.stringify(form)
+    let request = {
+        method: 'POST',
+        url: '/api/todo/add',
+        data: data,
+        contentType: 'application/json',
+        callback: function (response) {
+            // 不考虑错误情况(断网/服务器返回错误等等)
+            // log('响应', response)
+            let res = JSON.parse(response)
+        }
+    }
+    ajax(request)
+}
 
-// const todoDelete = (form) => { // form  必须含有 id
-//     // let form = {
-//     //     id: 1,
-//     // }
-//     let data = JSON.stringify(form)
-//     let request = {
-//         method: 'POST',
-//         url: '/api/todo/delete',
-//         data: data,
-//         contentType: 'application/json',
-//         callback: function (response) {
-//             // 不考虑错误情况(断网/服务器返回错误等等)
-//             // log('响应', response)
-//             let res = JSON.parse(response)
-//         }
-//     }
-//     ajax(request)
-// }
+const todoDelete = (form) => { // form  必须含有 id
+    // let form = {
+    //     id: 1,
+    // }
+    let data = JSON.stringify(form)
+    let request = {
+        method: 'POST',
+        url: '/api/todo/delete',
+        data: data,
+        contentType: 'application/json',
+        callback: function (response) {
+            // 不考虑错误情况(断网/服务器返回错误等等)
+            // log('响应', response)
+            let res = JSON.parse(response)
+        }
+    }
+    ajax(request)
+}
 
-// const todoFinished = (form) => { // form  必须含有 id
-//     // let form = {
-//     //     id: 1,
-//     // }
-//     let data = JSON.stringify(form)
-//     let request = {
-//         method: 'POST',
-//         url: '/api/todo/finished',
-//         data: data,
-//         contentType: 'application/json',
-//         callback: function (response) {
-//             // 不考虑错误情况(断网/服务器返回错误等等)
-//             // log('响应', response)
-//             let res = JSON.parse(response)
-//         }
-//     }
-//     ajax(request)
-// }
+const todoFinished = (form) => { // form  必须含有 id
+    // let form = {
+    //     id: 1,
+    // }
+    let data = JSON.stringify(form)
+    let request = {
+        method: 'POST',
+        url: '/api/todo/finished',
+        data: data,
+        contentType: 'application/json',
+        callback: function (response) {
+            // 不考虑错误情况(断网/服务器返回错误等等)
+            // log('响应', response)
+            let res = JSON.parse(response)
+        }
+    }
+    ajax(request)
+}
 
-// const todoUpdate = (form) => { // form  必须含有 id
-//     // let form = {
-//     //     id: 1,
-//     //     content: '测试函数 2 update'
-//     // }
-//     let data = JSON.stringify(form)
-//     let request = {
-//         method: 'POST',
-//         url: '/api/todo/update',
-//         data: data,
-//         contentType: 'application/json',
-//         callback: function (response) {
-//             // 不考虑错误情况(断网/服务器返回错误等等)
-//             // log('响应', response)
-//             let res = JSON.parse(response)
-//         }
-//     }
-//     ajax(request)
-// }
+const todoUpdate = (form) => { // form  必须含有 id
+    // let form = {
+    //     id: 1,
+    //     content: '测试函数 2 update'
+    // }
+    let data = JSON.stringify(form)
+    let request = {
+        method: 'POST',
+        url: '/api/todo/update',
+        data: data,
+        contentType: 'application/json',
+        callback: function (response) {
+            // 不考虑错误情况(断网/服务器返回错误等等)
+            // log('响应', response)
+            let res = JSON.parse(response)
+        }
+    }
+    ajax(request)
+}
 
 // const Todo = () => {}
 // Todo.prototype.post = () => {}
